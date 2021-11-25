@@ -62,13 +62,12 @@ class rsa {
     	return d;
 	}
     // funcion modulo
-    ZZ modulo(ZZ a,ZZ b){
-    ZZ q=a/b;
-    ZZ res=a-(q*b);
-    if (res<0){
-        q--;
-        res=a-(q*b);
-    }
+    ZZ modulo(ZZ a, ZZ b){
+    ZZ r;
+    r = a - b * (a / b);
+    r = r + (r < 0) * b;
+    return r;
+	}
     return res;
 	}
 	//algoritmo base
