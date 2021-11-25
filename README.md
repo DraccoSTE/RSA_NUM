@@ -4,5 +4,6 @@ El algoritmo implementado crea una clase llamada rsa, donde posteriormente decla
 Realizado esto tendremos que crear dos métodos creadores de la clase, uno que recibe parametros, que es para el emisor y uno que no los recibe, que es para el receptor.
 El creador del emisor inicializa p y q usando una funcion de la Libreria NTL para conseguir primos menores a N, luego asigna n a la multiplicacion ed los primos y phi a la multiplicacion de ambos menos uno, luego usaremos otra funcion de NTL para generar un numero random, el cual luego evaluamos y volveremos a generar si es menor a 2 o si su mcd con phi no es 1 (osea si no es coprimo con phi), luego haremos el extendido de euclides de e y phi para conseguir la inversa de e, la cual asignaremos a d, que si es negativa la haremos pasar por el modulo phi para conseguir una positiva.
 Dentro de esta clase tambien declaramos nuestros métodos necesarios para el correcto funcionamiento de este como las funciones get, que permiten usar variables privadas, la funcion modulo, euclides y euclides extendido, muy usadas dentro del algoritmo y en su metodo creador.
-//faltaaaaaaaaaaa
+Finalmente los metodos de encriptar y descifrar, lo cuales utilizan por igual la funcion de exponenciacion binaria, la primera usa como base el mensaje, exponente e y modulo n
+y la segunda usa tambien el mensaje como base, el exponente en ese caso es e y el modulo sigue siendo n.
 
