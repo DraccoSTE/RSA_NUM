@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-#include <time.h>
 #include <vector>
 #include <NTL/ZZ.h>
 
@@ -27,7 +26,6 @@ class rsa {
         	q=conv<ZZ>("11");
         	n=p*q;
         	phi=(p-1)*(q-1);
-        	srand(time(NULL));
         	e=RandomBnd(n);
         	ZZ aux=e;
         	ZZ mcd=Euclides(phi,aux);
@@ -67,9 +65,7 @@ class rsa {
     r = a - b * (a / b);
     r = r + (r < 0) * b;
     return r;
-	}
-    return res;
-	}
+    }
 	//algoritmo base
 	ZZ Euclides(ZZ x,ZZ y){
     	ZZ aux=x-((x/y*y));
@@ -141,3 +137,4 @@ int main(){
   	cout<<endl<<"Descifrado: "<<orgnl;
 
 }
+
