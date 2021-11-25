@@ -116,21 +116,31 @@ class rsa {
 
     return temp;
     }
+    ZZ potenciacionbinariamodular(ZZ x, ZZ y, ZZ m) {
+        ZZ respuesta; respuesta = 1;
+        x = modulo(x, m);
+        while (y > 0) {
+            if (modulo(y,ZZ(2))==1) { respuesta = modulo(respuesta * x,m); }
+            x = modulo(x * x,m);
+            y = y>>1;
+        }
+        return respuesta;
+    }
 	//encriptar usando .find para sacar el valor necesario y multiplicar clave a y sumar clave b, pasando respectivamente por modulo para comprobar que sean positivos
     ZZ encriptar(ZZ base,ZZ n,ZZ e){
-    	ZZ crp=PowerMod(base, e, n);
+    	ZZ crp=potenciacionbinariamodular(base,e,n);
     	return crp;
     }
 	//descifrar usando .find, consiguiendo el valor necesario para restarle b y multiplicarlo por la inversa de a, pasando por funcion modulo resectivamente
 	ZZ descifrar(ZZ base,ZZ n,ZZ d){
-    	ZZ drp=PowerMod(base, d, n);
+    	ZZ drp=potenciacionbinariamodular(base,d,n);
     	return drp;
 	}
 };
 int main(){
 	rsa receptor;
   	rsa emisor(receptor.gete(),receptor.getn());
-  	ZZ msg=conv<ZZ>("30");
+  	ZZ msg=conv<ZZ>("7");
   	ZZ crp=emisor.encriptar(msg,receptor.getn(),receptor.gete());
   	ZZ orgnl=emisor.encriptar(crp,receptor.getn(),receptor.getd());
   	cout<<endl<<"Encriptado: "<<crp<<endl;
